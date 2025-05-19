@@ -93,52 +93,19 @@ for i in range(len(H4rec_ham)):
     H4rec_ham[i] = jordan_wigner(H4rec_ham[i])    
 
 #For noiseless simulation, GS of H(r) is prepared by exact diagonalization
-from qiskit_algorithms import NumPyMinimumEigensolver, VQE
-exact_solver = NumPyMinimumEigensolver()
+from openfermion.linalg import get_sparse_operator
+from scipy.sparse.linalg import eigsh
 
-#Noiseless LiH
-GS_LiH_ener=[]
-GS_LiH_eive=[]
+LiH_eigenvalues = []
+LiH_eigenvectors = []
 
-for H in LiH_ham:
-    result = exact_solver.compute_minimum_eigenvalue(H)
-    GS_LiH_ener.append(result.eigenvalue.real)
-    GS_LiH_eive.append(result.eigenstate)
+#LiH
 
-#Noiseless H4lin
-GS_ener=[]
-GS_eive=[]
 
-for H in LiH_ham:
-    result = exact_solver.compute_minimum_eigenvalue(H)
-    GS_ener.append(result.eigenvalue.real)
-    GS_eive.append(result.eigenstate)
-
-#Noiseless H4lin
-GS_H4lin_ener=[]
-GS_H4lin_eive=[]
-
-for H in H4lin_ham:
-    result = exact_solver.compute_minimum_eigenvalue(H)
-    GS_H4lin_ener.append(result.eigenvalue.real)
-    GS_H4lin_eive.append(result.eigenstate)
-
-#Noiseless H4rec
-GS_H4rec_ener=[]
-GS_H4rec_eive=[]
-
-for H in H4rec_ham:
-    result = exact_solver.compute_minimum_eigenvalue(H)
-    GS_H4rec_ener.append(result.eigenvalue.real)
-    GS_H4rec_eive.append(result.eigenstate)
-
-#For noisy simulation, VQE applied to H(r), approximate ground state obtained as U(theta) 0^n
-#U(theta) is VQC (ansatz)
-#ADdapt UCCSD as U(theta)
 
 #Compute quantities of excited state properties to be predicted (formula 2)
 
-#Diagonalization of H(r) for both simultations
+#Diagonalization of H(r) 
 
 #Fit values into [-1, 1] range
 

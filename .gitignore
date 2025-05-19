@@ -1,0 +1,63 @@
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+*.so
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore environment files
+.env
+.venv/
+venv/
+ENV/
+env/
+qiskit_env/
+*.env
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
+
+# Ignore VSCode config files
+.vscode/
+
+# Ignore Python egg info
+*.egg-info/
+dist/
+build/
+
+# Ignore log files
+*.log
+
+# Ignore test coverage files
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Ignore compiled C extensions
+*.pyd
+
+# Ignore backup files
+*.bak
+*.swp
+*~
+
+# Ignore Jupyter runtime and metadata
+*.ipynb_checkpoints/
+.ipynb_checkpoints/
+.jupyter/
+
+# Optional: Ignore large data files (customize if needed)
+*.csv
+*.h5
+*.zip
+*.tar.gz
+*.npz
+*.npy
