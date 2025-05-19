@@ -9,6 +9,7 @@ import numpy as np
 from openfermion.chem import MolecularData as md
 from openfermionpyscf import run_pyscf
 from openfermion.hamiltonians import generate_hamiltonian
+from openfermion.transforms import jordan_wigner
 
 #Perform Hartree-Fock calculation, STO-3G minimal basis
 #Construct fermionic sec-quantized Hamiltonian for all molecules and config
@@ -29,12 +30,12 @@ for d in LiH_dis:
 
     mol = run_pyscf(molecule, run_scf=1, run_mp2=0, run_cisd=0, run_ccsd=0, run_fci=0)
 
-    reduced_one_body = mol.one_body_integrals[:4, 4]
-    reduced_two_body = mol.two_body_integrals[:4, 4, :4, :4]
+    reduced_one_body = mol.one_body_integrals[:4, :4]
+    reduced_two_body = mol.two_body_integrals[:4, :4, :4, :4]
     
     hamiltonian = generate_hamiltonian(
-        one_body_integrals=mol.one_body_integrals,
-        two_body_integrals=mol.two_body_integrals,
+        one_body_integrals=reduced_one_body,
+        two_body_integrals=reduced_two_body,
         constant=mol.nuclear_repulsion
     )
 
@@ -81,9 +82,57 @@ for d1 in H4rec_dis:
 
         H4rec_ham.append(hamiltonian)
 
-#For noiseless simulation, GS of H(r) is prepared by exact diagonalization
+#Jordan-Wigner transformation
+for i in range(len(LiH_ham)):
+    LiH_ham[i] = jordan_wigner(LiH_ham[i])
 
-#For noiseless simulation, VQE applied to H(r), approximate ground state obtained as U(theta) 0^n
+for i in range(len(H4lin_ham)):
+    H4lin_ham[i] = jordan_wigner(H4lin_ham[i])
+    
+for i in range(len(H4rec_ham)):
+    H4rec_ham[i] = jordan_wigner(H4rec_ham[i])    
+
+#For noiseless simulation, GS of H(r) is prepared by exact diagonalization
+from qiskit_algorithms import NumPyMinimumEigensolver, VQE
+exact_solver = NumPyMinimumEigensolver()
+
+#Noiseless LiH
+GS_LiH_ener=[]
+GS_LiH_eive=[]
+
+for H in LiH_ham:
+    result = exact_solver.compute_minimum_eigenvalue(H)
+    GS_LiH_ener.append(result.eigenvalue.real)
+    GS_LiH_eive.append(result.eigenstate)
+
+#Noiseless H4lin
+GS_ener=[]
+GS_eive=[]
+
+for H in LiH_ham:
+    result = exact_solver.compute_minimum_eigenvalue(H)
+    GS_ener.append(result.eigenvalue.real)
+    GS_eive.append(result.eigenstate)
+
+#Noiseless H4lin
+GS_H4lin_ener=[]
+GS_H4lin_eive=[]
+
+for H in H4lin_ham:
+    result = exact_solver.compute_minimum_eigenvalue(H)
+    GS_H4lin_ener.append(result.eigenvalue.real)
+    GS_H4lin_eive.append(result.eigenstate)
+
+#Noiseless H4rec
+GS_H4rec_ener=[]
+GS_H4rec_eive=[]
+
+for H in H4rec_ham:
+    result = exact_solver.compute_minimum_eigenvalue(H)
+    GS_H4rec_ener.append(result.eigenvalue.real)
+    GS_H4rec_eive.append(result.eigenstate)
+
+#For noisy simulation, VQE applied to H(r), approximate ground state obtained as U(theta) 0^n
 #U(theta) is VQC (ansatz)
 #ADdapt UCCSD as U(theta)
 
