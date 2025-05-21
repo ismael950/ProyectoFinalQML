@@ -1,0 +1,9 @@
+elements:
+  - 'Li'
+  - 'H'
+
+dis:
+  - 0.5
+  - 3.3
+
+bas: 'sto-3g'
