@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <title>ML Predictor</title>
+    <title>ML Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+</head>
+<body>
+    <h1>QML para Predicción de Estados Excitados</h1>
+
+    <!-- Mostrar mensajes flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+          <li class="{{ category }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Subir archivo">
+    </form>
+
+    <form action="/train" method="post">
+        <input type="submit" value="Entrenar modelo">
+    </form>
+
+    <form action="/evaluate" method="post">
+        <input type="submit" value="Evaluar modelo">
+    </form>
+
+    <h2>Gráfica generada:</h2>
+    {% if graph_exists %}
+        <img src="{{ url_for('static', filename='images/graph.png') }}?v={{ timestamp }}" alt="Gráfica" width="500">
+    {% else %}
+        <p>No hay gráfica aún.</p>
+    {% endif %}
+</body>
+</html>

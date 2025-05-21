@@ -1,0 +1,262 @@
+/* ===== Global Styles ===== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #d181ee 0%, #8348c3 100%);
+  color: #333;
+}
+
+/* ===== Container Box ===== */
+.container {
+  width: 90%;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px 40px;
+  background-color: #fff;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(83, 53, 148, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+/* ===== Headings ===== */
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+  color: #2f1e52;
+  margin-bottom: 0.5em;
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  padding-bottom: 0.3em;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* ===== Buttons ===== */
+button {
+  background-color: #5b4caf;
+  width: 60px;
+  height: 60px;
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  margin: 12px auto;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(91, 76, 175, 0.4);
+  display: block;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+button:hover {
+  background-color: #432d91;
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(67, 45, 145, 0.6);
+}
+
+/* ===== Botones submit, reset, etc ===== */
+button[type="submit"],
+button[type="reset"],
+button.submit-btn {
+  background-color: #8348c3;
+  width: auto;
+  min-width: 140px;
+  padding: 12px 28px;
+  border-radius: 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 16px auto;
+  display: block;
+  color: white;
+  box-shadow: 0 6px 14px rgba(131, 72, 195, 0.6);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover,
+button[type="reset"]:hover,
+button.submit-btn:hover {
+  background-color: #5b32a3;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(91, 50, 163, 0.8);
+}
+
+/* ===== Input file (botón para subir archivo) ===== */
+input[type="file"] {
+  width: auto;
+  padding: 12px 18px;
+  border: 2px solid #5b4caf;
+  border-radius: 16px;
+  background-color: #f4eaff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: 12px auto;
+  text-align: center;
+}
+
+input[type="file"]:hover {
+  background-color: #e3ccf9;
+}
+
+/* ===== Images ===== */
+img {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 12px 24px rgba(91, 76, 175, 0.35);
+  margin: 20px auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
+}
+
+/* ===== Form Elements ===== */
+input:not([type="file"]), select, textarea {
+  width: 100%;
+  padding: 14px 18px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  border: 2px solid #5b4caf;
+  border-radius: 16px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  text-align: center;
+}
+
+input:not([type="file"]):focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #8348c3;
+  box-shadow: 0 0 10px rgba(131, 72, 195, 0.5);
+}
+
+label {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #5b4caf;
+  display: block;
+  margin-bottom: 8px;
+  text-align: center;
+  width: 100%;
+}
+
+/* ===== Mensajes ===== */
+.success, .error, .info {
+  max-width: 500px;
+  margin: 12px auto;
+  padding: 12px 20px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.success {
+  background-color: #a2d5ab;
+  color: #1a472a;
+  border: 2px solid #6bbf73;
+  box-shadow: 0 4px 8px rgba(102, 187, 106, 0.4);
+}
+
+.error {
+  background-color: #f8c3c3;
+  color: #7a1a1a;
+  border: 2px solid #e06666;
+  box-shadow: 0 4px 8px rgba(229, 115, 115, 0.4);
+}
+
+.info {
+  background-color: #c2dbf9;
+  color: #1e3a72;
+  border: 2px solid #6b9fe6;
+  box-shadow: 0 4px 8px rgba(107, 159, 230, 0.4);
+}
+
+/* ===== Botones ===== */
+button,
+button[type="submit"],
+button[type="reset"],
+button.submit-btn {
+  background-color: #8348c3 !important; /* force override */
+  color: white !important;
+  border: none !important;
+  border-radius: 24px !important;
+  padding: 12px 28px !important;
+  min-width: 140px !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  margin: 16px auto !important;
+  display: block !important;
+  cursor: pointer !important;
+  box-shadow: 0 6px 14px rgba(131, 72, 195, 0.6) !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
+  text-align: center !important;
+}
+
+button:hover,
+button[type="submit"]:hover,
+button[type="reset"]:hover,
+button.submit-btn:hover {
+  background-color: #5b32a3 !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 8px 20px rgba(91, 50, 163, 0.8) !important;
+}
+
+/* Para que el botón de archivo quede centrado y con estilo */
+input[type="file"] {
+  width: auto !important;
+  padding: 12px 18px !important;
+  border: 2px solid #5b4caf !important;
+  border-radius: 16px !important;
+  background-color: #f4eaff !important;
+  cursor: pointer !important;
+  font-weight: 600 !important;
+  transition: background-color 0.3s ease !important;
+  display: block !important;
+  margin: 12px auto !important;
+  text-align: center !important;
+}
+
+input[type="file"]:hover {
+  background-color: #e3ccf9 !important;
+}
+
+input[type="submit"] {
+  background-color: #5c3cc8;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 16px auto;
+  display: block;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(91, 54, 225, 0.6);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-align: center;
+  width: auto;
+  max-width: 250px;
+}
+
+input[type="submit"]:hover {
+  background-color: #5b32a3;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(91, 50, 163, 0.8);
+}
